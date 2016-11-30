@@ -20,6 +20,15 @@ NUM_MOUSE_MOVES = 10  # number of times to randomly move the mouse as part of bo
 RANDOM_SLEEP_LOW = 1  # low end (in seconds) for random sleep times between page loads (bot mitigation)
 RANDOM_SLEEP_HIGH = 7  # high end (in seconds) for random sleep times between page loads (bot mitigation)
 
+def scroll_bottom(webdriver):
+    lenOfPage = webdriver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+    match=False
+    while(match==False):
+            lastCount = lenOfPage
+            time.sleep(3)
+            lenOfPage = webdriver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
+            if lastCount==lenOfPage:
+                match=True
 
 def bot_mitigation(webdriver):
     """ performs three optional commands for bot-detection mitigation when getting a site """

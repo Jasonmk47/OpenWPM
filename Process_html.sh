@@ -1,5 +1,5 @@
 #!/bin/bash
-FILES=/home/jason/Desktop/analysis/sources/*
+FILES=/home/jason/Desktop/NYT/analysis/sources/*
 for f in $FILES
 do
 	echo "Processing $f:"

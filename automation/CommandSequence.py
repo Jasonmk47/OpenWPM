@@ -20,6 +20,14 @@ class CommandSequence:
     called prior to one of those two commands.
     """
 
+    def scroll_bottom(self, timeout):
+        self.total_timeout += timeout
+        if not self.contains_get_or_browse:
+            raise CommandExecutionError("No get or browse request preceding "
+                                    "the jiggle_mouse command", self)
+        command = ('SCROLL_BOTTOM',)
+        self.commands_with_timeout.append((command, timeout))
+
     def __init__(self, url, reset=False):
         """Nothing to do here"""
         self.url = url

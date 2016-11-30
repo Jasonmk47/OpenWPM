@@ -8,6 +8,9 @@ def execute_command(command, webdriver, proxy_queue, browser_settings, browser_p
     commands are of form (COMMAND, ARG0, ARG1, ...)
     the only imports in this file should be imports to helper libraries
     """
+    if command[0] == 'SCROLL_BOTTOM':
+        browser_commands.scroll_bottom(webdriver=webdriver)
+
     if command[0] == 'GET':
         browser_commands.get_website(url=command[1], sleep=command[2], visit_id=command[3],
                                      webdriver=webdriver, proxy_queue=proxy_queue,

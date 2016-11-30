@@ -10,8 +10,8 @@ manager_params, browser_params = TaskManager.load_default_params(1)
 browser_params[0]['disable_flash'] = False #doesn't do anything just shows how
 
 # Update TaskManager configuration (use this for crawl-wide settings)
-manager_params['data_directory'] = '~/Desktop/'
-manager_params['log_directory'] = '~/Desktop/'
+manager_params['data_directory'] = '~/Desktop/Atlantic'
+manager_params['log_directory'] = '~/Desktop/Atlantic'
 
 # Instantiates the measurement platform
 # Commands time out by default after 60 seconds
