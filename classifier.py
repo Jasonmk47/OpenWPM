@@ -20,6 +20,7 @@ def main():
 	training_tf.shape
 
 	support_vector_machine = svm.SVC(kernel='linear')
+
 	support_vector_machine.fit(training_tf, dataset.target)
 
 	naive_bayes = MultinomialNB().fit(training_tf, dataset.target)
@@ -34,6 +35,7 @@ def main():
 
 	svm_prediction = support_vector_machine.predict(new_tfidf)
 	nb_prediction = naive_bayes.predict(new_tfidf)
+
 	#lsvm_prediction = linear_svm.predict(new_tfidf)
 
 	print "actual"

@@ -6,6 +6,7 @@ def main():
 	with open(sys.argv[1], 'r') as myfile:
 		data = myfile.read()
 
+<<<<<<< HEAD
 	data = re.sub(r'<(script).*?</\1>(?s)', '', data)
 	data = re.sub(r'<(noscript).*?</\1>(?s)', '', data)
 	data = re.sub(r'<(style).*?</\1>(?s)', '', data)
