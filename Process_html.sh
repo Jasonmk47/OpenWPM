@@ -6,7 +6,5 @@ do
 	FILENAME=`basename $f .html`
 	FILENAME=$(echo "$FILENAME" | sed 's/\.[^.]*$//')
 	FILENAME="$FILENAME"""
-	python extract_words.py $f > "/home/jason/Desktop/NYT/analysis/sources/$FILENAME""_text.txt"
-	grep . "/home/jason/Desktop/NYT/analysis/sources/$FILENAME""_text.txt" > "/home/jason/Desktop/NYT/analysis/sources/$FILENAME"".txt"
-	rm "/home/jason/Desktop/NYT/analysis/sources/$FILENAME""_text.txt"
+	python extract_words.py $f > "/home/jason/Desktop/NYT/analysis/sources/$FILENAME"".txt"
 done

@@ -41,7 +41,13 @@ def main():
 	data = re.sub('(?m)^[A-Za-z0-9\.\:\'\-]+ [A-Za-z0-9\.\:\'\-]+ [A-Za-z0-9\.\:\'\-]+$', '', data)
 	data = re.sub('(?m)^[A-Za-z0-9\.\:\'\-]+ & [A-Za-z0-9\.\:\'\-]+$', '', data)
 
-	print(data.split(' 2016 The New York Times Company')[0])
+	data = re.sub('\n+' , '\n', data)
+
+	data = data.split('\xa9 2016 The New York Times Company')[0]
+	data = re.sub('\C2' , '', data)
+
+
+	print(data)
 
 
 if __name__ == '__main__':
