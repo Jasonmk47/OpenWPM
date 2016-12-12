@@ -6,6 +6,7 @@ from sklearn import svm
 from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
+from sklearn.metrics import roc_curve, auc
 
 
 def main():
@@ -19,24 +20,27 @@ def main():
 	training_tf = tf_transformer.transform(training_counts)
 	training_tf.shape
 
-	support_vector_machine = svm.SVC(kernel='linear')
+	support_vector_machine = svm.SVC(kernel='linear', probability=True)
 
 	support_vector_machine.fit(training_tf, dataset.target)
-
-	naive_bayes = MultinomialNB().fit(training_tf, dataset.target)
-
-	linear_svm = Pipeline([('vect', count_vect),('tfidf',tf_transformer),('clf',SGDClassifier(loss='hinge',alpha=1e-3,n_iter=5,random_state=42)),])
-	linear_svm.fit(dataset.data, dataset.target)
 
 	test_dataset = sklearn.datasets.load_files('/home/jason/Desktop/NYT/analysis/test_articles', encoding="utf-8", decode_error='ignore')
 	new_counts = count_vect.transform(test_dataset.data)
 	new_tfidf = tf_transformer.transform(new_counts)
 
-
 	svm_prediction = support_vector_machine.predict(new_tfidf)
-	nb_prediction = naive_bayes.predict(new_tfidf)
+	svm_proba_prediction = support_vector_machine.predict_proba(new_tfidf)
 
-	#lsvm_prediction = linear_svm.predict(new_tfidf)
+
+	score = support_vector_machine.decision_function(new_tfidf)
+	fpr = dict()
+	tpr = dict()
+	roc_auc = dict()
+
+	print "score: "
+	print score
+
+
 
 	print "actual"
 	print test_dataset.target
@@ -44,21 +48,11 @@ def main():
 	print "svm prediction: "
 	print svm_prediction
 
+	print "svm probabilities"
+	for point in svm_proba_prediction:
+		print "%.8f" % point[0]
+		print "%.8f" % point[1]
 
-	mapping = dict(zip(count_vect.get_feature_names(), tf_transformer.idf_))
-
-	print "coefficients"
-	print support_vector_machine.coef_
-
-	print " training set"
-	print training_tf
-
-
-
-	print "nb prediction: "
-	print nb_prediction
-	#print "Linear svm prediction: "
-	#print lsvm_prediction
 
 
 if __name__ == '__main__':
