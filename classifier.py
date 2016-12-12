@@ -48,10 +48,11 @@ def main():
 	print "svm prediction: "
 	print svm_prediction
 
-	print "svm probabilities"
-	for point in svm_proba_prediction:
-		print "%.8f" % point[0]
-		print "%.8f" % point[1]
+
+	#print "svm probabilities"
+	#for point in svm_proba_prediction:
+#		print "%.8f" % point[0]
+#		print "%.8f" % point[1]
 
 
 

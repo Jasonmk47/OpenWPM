@@ -15,6 +15,9 @@ def main():
 
 	data = re.sub('skip ad', '', data)
 	data = re.sub('PAID FOR AND POSTED BY', '', data)
+	data = re.sub("The news and editorial staffs of The New York Times had no role in this post's preparation.", '', data)
+
+
 	data = re.sub('Continue reading the main story', '', data)
 	data = re.sub('Share this comment on Facebook', '', data)
 	data = re.sub('Share this comment on Twitter', '', data)
@@ -29,6 +32,7 @@ def main():
 	data = re.sub('Close this modal window', '', data)
 	data = re.sub('Forgot password?', '', data)
 	data = re.sub('Clear this text input', '',data)
+	data = re.sub('NYTimes.com no longer supports Internet Explorer 9 or earlier. Please upgrade your browser.', '', data)
 
 	data = re.sub('(?m)^[A-Za-z0-9\.\:\'\-]+$', '', data)
 	data = re.sub('(?m)^[A-Za-z0-9\.\:\'\-]+$', '', data)
@@ -37,7 +41,8 @@ def main():
 	data = re.sub('(?m)^[A-Za-z0-9\.\:\'\-]+ [A-Za-z0-9\.\:\'\-]+ [A-Za-z0-9\.\:\'\-]+$', '', data)
 	data = re.sub('(?m)^[A-Za-z0-9\.\:\'\-]+ & [A-Za-z0-9\.\:\'\-]+$', '', data)
 
-	print(data)
+	print(data.split(' 2016 The New York Times Company')[0])
+
 
 if __name__ == '__main__':
 	main()
